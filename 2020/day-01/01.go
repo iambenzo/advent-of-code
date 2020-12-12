@@ -2,27 +2,44 @@ package main
 
 import (
 	"bufio"
-    "strconv"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
     expenses, err := readFile()
     checkError(err)
 
-    for k, _ := range expenses {
+    var part1Found bool
+    var part2Found bool
+
+    for k := range expenses {
         // With the first number in hand, work out what the matching value would be
-        match := 2020 - k
+        firstMatch := 2020 - k
 
         // If our "set" contains the matching value
         // Print and exit
-        if expenses[match] {
-            fmt.Println(fmt.Sprintf("Found that %d and %d add to 2020", k, match))
-            fmt.Println(fmt.Sprintf("Answer: %d", k*match))
+        if !part1Found && expenses[firstMatch] {
+            part1Found = true
+            fmt.Println(fmt.Sprintf("Found that %d and %d add to 2020", k, firstMatch))
+            fmt.Println(fmt.Sprintf("Answer for part one: %d", k*firstMatch))
+        }
+
+        // Wanted to avoid inner loops but hey ho
+        for k2 := range expenses {
+            secondMatch := firstMatch - k2
+            if !part2Found && expenses[secondMatch] {
+                part2Found = true
+                fmt.Println(fmt.Sprintf("Found that %d, %d and %d add to 2020", k, secondMatch, k2))
+                fmt.Println(fmt.Sprintf("Answer for part two: %d", k*secondMatch*k2))
+            }
+        }
+
+        // Otherwise, continue...
+        if part1Found && part2Found {
             os.Exit(0)
         }
-        // Otherwise, continue...
     }
 
 }
