@@ -70,8 +70,6 @@ func checkError(e error) {
     }
 }
 
-// Read file contents into a map that's been bastardised
-// into some form of set
 func readFile(file string) ([]string, error) {
     fileBytes, err := ioutil.ReadFile(file)
     return strings.Split(string(fileBytes), "\n"), err
