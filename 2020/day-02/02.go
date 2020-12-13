@@ -29,8 +29,7 @@ func main() {
     // For each line, parse the rule
     // apply the rule, adjust the vaild count
     for _, line := range entries {
-        parts := strings.Split(line, " ")
-        if len(parts) == 3 {
+        if len(strings.Split(line, " ")) == 3 {
             rgx := r.FindStringSubmatch(line)
             // fmt.Printf("%#v\n", rgx)
 
