@@ -17,17 +17,17 @@ func main() {
 	slope, err := readFile(os.Args[1])
 	checkError(err)
 
-	part1 := slide(3, 1, slope)
+	part1 := slide(3, 1, &slope)
 	fmt.Printf("[Part 1] Tree count: %d\n", part1)
 
-	fmt.Printf("[Part 2] Multiplied tree count: %d", slide(1, 1, slope)*slide(3, 1, slope)*slide(5, 1, slope)*slide(7, 1, slope)*slide(1, 2, slope))
+	fmt.Printf("[Part 2] Multiplied tree count: %d", slide(1, 1, &slope)*slide(3, 1, &slope)*slide(5, 1, &slope)*slide(7, 1, &slope)*slide(1, 2, &slope))
 
 }
 
-func slide(moveX int, moveY int, slope [][]int32) int {
+func slide(moveX int, moveY int, slope *[][]int32) int {
 	// Define counts and key numbers
-	mod := len(slope[0])
-	slopeEnd := len(slope)
+	mod := len((*slope)[0])
+	slopeEnd := len(*slope)
 	treeCount := 0
 	x := 0
 
@@ -37,7 +37,7 @@ func slide(moveX int, moveY int, slope [][]int32) int {
 		x = (x + moveX) % mod
 
 		// Count the trees
-		if string(slope[y][x]) == "#" {
+		if string((*slope)[y][x]) == "#" {
 			treeCount++
 		}
 	}
