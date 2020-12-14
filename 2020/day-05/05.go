@@ -21,11 +21,11 @@ func main() {
 	bumsOnSeats := make(map[int]bool)
 
 	for _, pass := range passes {
-        rowMin := 0
-        rowMax := 127
-        seatMin := 0
-        seatMax := 7
-        move := 2.0
+		rowMin := 0
+		rowMax := 127
+		seatMin := 0
+		seatMax := 7
+		move := 2.0
 		for num, step := range []rune(pass) {
 			if num == 7 {
 				move = 2.0
