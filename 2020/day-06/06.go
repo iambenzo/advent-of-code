@@ -27,13 +27,11 @@ func main() {
         for _, answer := range []rune(strings.ReplaceAll(group, "\n", "")) {
             //For each answer, record the letter in our "set"
             answerMap[string(answer)]++
+            if answerMap[string(answer)] == headCount {
+                everyoneSum++
+            }
         }
         anyoneSum += len(answerMap)
-        for k := range answerMap {
-            if answerMap[k] == headCount {
-                 everyoneSum++
-             }
-         }
     }
 
     fmt.Printf("[Part 1] The sum of all groups answers: %d\n", anyoneSum)
