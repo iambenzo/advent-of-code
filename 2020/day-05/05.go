@@ -16,16 +16,16 @@ func main() {
 	passes, err := readFile(os.Args[1])
 	checkError(err)
 
-	rowMin := 0
-	rowMax := 127
-	seatMin := 0
-	seatMax := 7
-	move := 2.0
 	highestBoardingPass := 0
 	lowestBoardingPass := 127*8 + 7
 	bumsOnSeats := make(map[int]bool)
 
 	for _, pass := range passes {
+        rowMin := 0
+        rowMax := 127
+        seatMin := 0
+        seatMax := 7
+        move := 2.0
 		for num, step := range []rune(pass) {
 			if num == 7 {
 				move = 2.0
@@ -53,11 +53,6 @@ func main() {
 		}
 
 		bumsOnSeats[seatId] = true
-		rowMin = 0
-		rowMax = 127
-		seatMin = 0
-		seatMax = 7
-		move = 2.0
 	}
 
 	fmt.Printf("[Part 1] The highest seat ID is: %d\n", highestBoardingPass)
